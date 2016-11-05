@@ -82,6 +82,7 @@ Object.defineProperty(Component.prototype, 'request', {
             catch(error => {
                 window.toast.show('请求超时，请稍后再试');
                 console.log('request error', error);
+                window.loading.show(false);
                 return null;
             });
     },

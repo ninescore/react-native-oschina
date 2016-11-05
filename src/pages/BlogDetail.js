@@ -18,10 +18,10 @@ import BaseComponent from '../core/BaseComponent';
 import CommentList from './CommentList';
 import UserDetail from './UserDetail';
 
-export default class NewsDetail extends BaseComponent {
+export default class BlogDetail extends BaseComponent {
 
     constructor(props) {
-        super(props, '资讯详情');
+        super(props, '博客详情');
         this.state = {
             bean: null,
         }
@@ -38,7 +38,7 @@ export default class NewsDetail extends BaseComponent {
             id: this.props.id,
             dataType: 'json',
         };
-        let url = `${window.domain}/action/openapi/news_detail?${Object.parseParam(params)}`;
+        let url = `${window.domain}/action/openapi/blog_detail?${Object.parseParam(params)}`;
         let response = await this.request(url);
         if (response && response.body) {
             let body = response.body.replace(/font-size/g, 'f');
@@ -64,7 +64,7 @@ export default class NewsDetail extends BaseComponent {
             component: CommentList,
             params: {
                 id: this.state.bean.id,
-                catalog: 1,
+                catalog: 5,
                 commentCount: this.state.bean.commentCount,
             }
         });

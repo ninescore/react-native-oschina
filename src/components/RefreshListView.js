@@ -53,7 +53,9 @@ export default class RefreshListView extends Component {
         if (!this.state.refreshing)
             return null;
         return (
-            <Text style={styles.message}>正在加载中...</Text>
+        	<View style={styles.message}>
+            	<Text style={window.theme.subText}>正在加载中...</Text>
+            </View>
         );
     }
 
@@ -61,7 +63,9 @@ export default class RefreshListView extends Component {
         if (!this.state.loading)
             return null;
         return (
-            <Text style={styles.message}>正在加载中...</Text>
+    		<View style={styles.message}>
+            	<Text style={window.theme.text}>正在加载中...</Text>
+            </View>
         );
     }
 
@@ -139,7 +143,7 @@ export default class RefreshListView extends Component {
                         <TouchableOpacity
                             style={styles.backTop}
                             onPress={this.onBackTop.bind(this)}>
-                            <Text style={styles.backTopTxt}>Top</Text>
+                            <Text style={window.theme.textWhite}>Top</Text>
                         </TouchableOpacity>
                 }
             </View>
@@ -155,14 +159,15 @@ const styles = StyleSheet.create({
     message: {
         flex: 1,
         padding: 10,
-        textAlign: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     backTop: {
         position: 'absolute',
-        right: 10,
-        bottom: 10,
+        right: 12,
+        bottom: 12,
         backgroundColor: 'gray',
-        padding: 5,
+        padding: 10,
     },
     backTopTxt: {
         color: '#fff',

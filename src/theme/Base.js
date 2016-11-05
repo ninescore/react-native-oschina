@@ -1,45 +1,45 @@
 
 export default class Base {
 
-    static primaryColor = '#15a230';
-    static secondaryColor = '#4eaa4c';
-    static embellishmentColor = '#f5a623';
+    static primaryColor = '#2ecc71';
+    static secondaryColor = '#27ae60';
+    static embellishmentColor = '#e67e22';
 
     // --------------------------------------------------
     // navigationBar
     // --------------------------------------------------
 
-    static navigationBarHeight = 40;
+    static navigationBarHeight = 48;
     static navigationBarContainer = {
         height: Base.navigationBarHeight,
         backgroundColor: Base.primaryColor,
-    }
-    static navigationBarTextColor = '#fff';
-    static navigationBarText = {
-        color: Base.navigationBarTextColor,
-        fontSize: 14,
     }
 
     // --------------------------------------------------
     // content
     // --------------------------------------------------
 
-    static contentColor = '#ededed';
+    static contentColor = '#ecf0f1';
+    static subColor = '#bbb';
     static contentContainer = {
         flex: 1,
         backgroundColor: Base.contentColor,
     }
     static text = {
-        color: '#464646',
-        fontSize: 14,
+    	color: '#666',
+        fontSize: 15,
+    }
+    static textWhite = {
+    	color: '#fff',
+        fontSize: 15,
     }
     static subText = {
-        color: '#999',
-        fontSize: 14,
+        color: '#bbb',
+        fontSize: 13,
     }
     static link = {
-        color: Base.primaryColor,
-        fontSize: 14,
+        color: Base.embellishmentColor,
+        fontSize: 13,
     }
 
 }

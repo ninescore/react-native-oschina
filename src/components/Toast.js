@@ -48,8 +48,8 @@ export default class Toast extends Component {
 
     render() {
         return !this.state.text ? null : (
-            <Animated.View style={[styles.container, { opacity: this.state.fadeAnim }]}>
-                <Text style={styles.text}>{this.state.text}</Text>
+            <Animated.View style={[styles.container, {backgroundColor: window.theme.primaryColor}, { opacity: this.state.fadeAnim }]}>
+                <Text style={window.theme.textWhite}>{this.state.text}</Text>
             </Animated.View>
         );
     }
@@ -58,16 +58,13 @@ export default class Toast extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'rgba(111,111,111,1)',
+//        backgroundColor: '#15a230',
         position: 'absolute',
-        left: 70,
-        top: 100,
-        width: window.width - 140,
+        left: window.width * 0.3 / 2,
+        top: 80,
+        width: window.width * 0.7,
         padding: 10,
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    text: {
-        color: '#fff',
     },
 });

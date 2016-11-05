@@ -81,7 +81,7 @@ export default class NavigationBar extends Component {
                 <TouchableOpacity
                     style={styles.btn}
                     onPress={this.goHome.bind(this)}>
-                    <Text style={window.theme.navigationBarText}>{this.state.title}</Text>
+                    <Text style={window.theme.textWhite}>{this.state.title}</Text>
                 </TouchableOpacity>
                 <View style={styles.right}>
                     {this.renderRight()}
@@ -99,11 +99,11 @@ export default class NavigationBar extends Component {
                 key={1}
                 style={styles.btn}
                 onPress={this.goBack.bind(this)}>
-                <Text style={window.theme.navigationBarText}>返回</Text>
+                <Text style={window.theme.textWhite}>返回</Text>
             </TouchableOpacity>
         );
         buttons.push(<View key={2} style={styles.cutLine}></View>);
-        // buttons.push(<Text key={2} style={window.theme.text}>|</Text>);
+        // buttons.push(<Text key={2} style={window.theme.textWhite}>|</Text>);
         return buttons;
     }
 
@@ -117,7 +117,7 @@ export default class NavigationBar extends Component {
                     style={styles.btn}
                     onPress={this.onPressRightButton.bind(this, m)}
                     >
-                    <Text style={window.theme.navigationBarText}>
+                    <Text style={window.theme.textWhite}>
                         {m.displayName}
                     </Text>
                 </TouchableOpacity>
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     cutLine: {
         alignSelf: 'stretch',
         width: StyleSheet.hairlineWidth,
-        backgroundColor: 'rgba(255,255,255,0.9)',
+        backgroundColor: 'rgba(255,255,255,1)',
     },
     right: {
         flex: 1,
@@ -149,6 +149,6 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingHorizontal: 10,
+        paddingHorizontal: 12,
     },
 });

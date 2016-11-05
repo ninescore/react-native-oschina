@@ -72,7 +72,7 @@ export default class PopMenu extends Component {
                     key={i}
                     style={styleArr}
                     onPress={this.onPressMenu.bind(this, m)}>
-                    <Text style={window.theme.text}>{m.name}</Text>
+                    <Text style={window.theme.textWhite}>{m.name}</Text>
                 </TouchableOpacity>
             );
         });
@@ -85,16 +85,15 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'rgba(255,255,255,0.9)',
+        backgroundColor: 'rgba(236,240,241,0.9)',
     },
     btn: {
-        backgroundColor: window.theme.contentColor,
+        backgroundColor: window.theme.primaryColor,
         width: window.width * 0.7,
         padding: 10,
-        borderTopWidth: StyleSheet.hairlineWidth,
-        borderTopColor: '#fff',
+        marginBottom: StyleSheet.hairlineWidth,
     },
     btnSelected: {
-        backgroundColor: window.theme.primaryColor,
+    	backgroundColor: window.theme.embellishmentColor,
     },
 });

@@ -17,10 +17,10 @@ import {
 import BaseComponent from '../core/BaseComponent';
 import CommentList from './CommentList';
 
-export default class NewsDetail extends BaseComponent {
+export default class UserDetail extends BaseComponent {
 
     constructor(props) {
-        super(props, '资讯详情');
+        super(props, '用户详情');
         this.state = {
             bean: null,
         }
@@ -34,34 +34,16 @@ export default class NewsDetail extends BaseComponent {
         window.loading.show(true);
         let params = {
             access_token: window.accessToken,
-            id: this.props.id,
+            user: this.props.id,
+            friend: this.props.id,
             dataType: 'json',
         };
-        let url = `${window.domain}/action/openapi/news_detail?${Object.parseParam(params)}`;
+        let url = `${window.domain}/action/openapi/user_information?${Object.parseParam(params)}`;
         let response = await this.request(url);
-        if (response && response.body) {
-            let body = response.body.replace(/font-size/g, 'f');
-            response.body = `<style>p { font-size: 14px; } img { width: 100%; }</style> ${body}`;
-        }
         this.setState({
             bean: response,
         });
         window.loading.show(false);
-    }
-
-    onPressAuthor() {
-
-    }
-
-    onPressComment() {
-        this.props.navigator.push({
-            component: CommentList,
-            params: {
-                id: this.state.bean.id,
-                catalog: 1,
-                commentCount: this.state.bean.commentCount,
-            }
-        });
     }
 
     render() {
@@ -69,30 +51,65 @@ export default class NewsDetail extends BaseComponent {
             return null;
         return (
             <View style={styles.container}>
+	            <View style={styles.title}>
+		            <Image
+		                style={styles.image}
+		                source={{ uri: this.state.bean.portrait }}
+		            />
+		        </View>
                 <View style={styles.title}>
-                    <Text style={window.theme.text}>{this.state.bean.title}</Text>
+                    <Text style={window.theme.text}>{this.state.bean.name}</Text>
                 </View>
                 <View style={styles.subTitle}>
-                    <Text style={window.theme.subText}>{this.state.bean.pubDate}</Text>
-                    <TouchableOpacity
-                        style={styles.btn}
-                        onPress={this.onPressAuthor.bind(this)}>
-                        <Text style={[window.theme.subText, window.theme.link]}>
-                            {this.state.bean.author}
-                        </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.btn}
-                        onPress={this.onPressComment.bind(this)}>
-                        <Text style={[window.theme.subText, window.theme.link]}>
-                            评论({this.state.bean.commentCount})
-                        </Text>
-                    </TouchableOpacity>
+                	<Text style={window.theme.text}>性别：</Text>
+	            	<Text style={[window.theme.text, styles.rowRight]}>
+                		{this.state.bean.gender == 1 ? '男' : '女'}
+                	</Text>
                 </View>
-                <WebView
-                    style={styles.body}
-                    source={{ html: this.state.bean.body }}
-                    />
+                <View style={styles.subTitle}>
+	            	<Text style={window.theme.text}>地区：</Text>
+	            	<Text style={[window.theme.text, styles.rowRight]}>
+	            		{this.state.bean.province} {this.state.bean.city}
+	            	</Text>
+	            </View>
+	            <View style={styles.subTitle}>
+	            	<Text style={window.theme.text}>开发平台：</Text>
+	            	<Text style={[window.theme.text, styles.rowRight]}>
+	            		{
+	            			!this.state.bean.platforms ? null :
+	            				this.state.bean.platforms.map((m, i) => {
+	            					return (
+	            						<Text key={i}>{m}{' '}</Text>
+	            					)
+	            				})
+	            		}
+	            	</Text>
+	            </View>
+	            <View style={styles.subTitle}>
+	            	<Text style={window.theme.text}>专长领域：</Text>
+	            	<Text style={[window.theme.text, styles.rowRight]}>
+	            		{
+	            			!this.state.bean.expertise ? null :
+	            				this.state.bean.expertise.map((m, i) => {
+	            					return (
+	            						<Text key={i}>{m}{' '}</Text>
+	            					)
+	            				})
+	            		}
+	            	</Text>
+	            </View>
+	            <View style={styles.subTitle}>
+	            	<Text style={window.theme.text}>加入时间：</Text>
+	            	<Text style={window.theme.text}>
+	            		{this.state.bean.joinTime}
+	            	</Text>
+	            </View>
+	            <View style={styles.subTitle}>
+	            	<Text style={window.theme.text}>最近登录时间：</Text>
+	            	<Text style={[window.theme.text, styles.rowRight]}>
+	            		{this.state.bean.lastLoginTime}
+	            	</Text>
+	            </View>
             </View>
         );
     }
@@ -111,13 +128,21 @@ const styles = StyleSheet.create({
     subTitle: {
         padding: 10,
         flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
+        borderBottomColor: '#fff',
+        borderBottomWidth: 1,
     },
-    body: {
-        flex: 1,
+    rowRight: {
+    	flex: 1,
     },
     btn: {
         marginLeft: 10,
+    },
+    image: {
+        width: 100,
+        height: 100,
+        resizeMode: 'contain',
+        borderRadius: 50,
+        borderColor: '#ccc',
+        borderWidth: 1,
     },
 });

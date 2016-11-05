@@ -15,6 +15,8 @@ import {
 import BaseComponent from '../core/BaseComponent';
 import ListViewPage from './ListViewPage';
 import NewsList from './NewsList';
+import BlogList from './BlogList';
+import SearchList from './SearchList';
 import Base from '../theme/Base';
 import Dark from '../theme/Dark';
 
@@ -65,6 +67,26 @@ export default class Index extends BaseComponent {
                     } }>
                     <Text>新闻</Text>
                 </TouchableOpacity>
+                
+                <TouchableOpacity
+	                style={styles.item}
+	                onPress={() => {
+	                    this.props.navigator.push({
+	                        component: BlogList,
+	                    });
+	                } }>
+	                <Text>博客</Text>
+	            </TouchableOpacity>
+	            
+	            <TouchableOpacity
+	                style={styles.item}
+	                onPress={() => {
+	                    this.props.navigator.push({
+	                        component: SearchList,
+	                    });
+	                } }>
+	                <Text>搜索</Text>
+	            </TouchableOpacity>
 
                 <TouchableOpacity
                     style={styles.item}
@@ -79,7 +101,7 @@ export default class Index extends BaseComponent {
                                 name: '夜间',
                             }]
                         };
-                        PopMenu.show(menu, (m) => {
+                        window.popMenu.show(menu, (m) => {
                             if (m.id == 1)
                                 window.theme = Base;
                             else if (m.id == 2)
