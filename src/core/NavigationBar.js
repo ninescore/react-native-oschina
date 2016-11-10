@@ -1,21 +1,17 @@
 /**
  * 导航栏
  */
-import React, { Component, PropTypes } from 'react';
-import {
+import React, {
+    Component,
+    PropTypes,
     StyleSheet,
     View,
-    ScrollView,
+    Image,
     Text,
     TextInput,
-    Image,
     TouchableOpacity,
-    TouchableHighlight,
-    Navigator,
-    Animated,
-    Linking,
-    Dimensions,
-} from 'react-native';
+    Icon,
+} from '../components/Libraries';
 import * as CommonUtil from '../utils/CommonUtil';
 
 export default class NavigationBar extends Component {
@@ -99,10 +95,10 @@ export default class NavigationBar extends Component {
                 key={1}
                 style={styles.btn}
                 onPress={this.goBack.bind(this)}>
-                <Text style={window.theme.textWhite}>返回</Text>
+                <Icon name="ios-arrow-round-back" />
             </TouchableOpacity>
         );
-        buttons.push(<View key={2} style={styles.cutLine}></View>);
+        // buttons.push(<View key={2} style={styles.cutLine}></View>);
         // buttons.push(<Text key={2} style={window.theme.textWhite}>|</Text>);
         return buttons;
     }
@@ -131,6 +127,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
+        paddingTop: 25,
     },
     cutLine: {
         alignSelf: 'stretch',

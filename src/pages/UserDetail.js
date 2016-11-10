@@ -1,19 +1,13 @@
-import React, { Component, PropTypes } from 'react';
-import {
+import React, {
+    Component,
+    PropTypes,
     StyleSheet,
     View,
-    ListView,
-    ScrollView,
+    Image,
     Text,
     TextInput,
-    Image,
     TouchableOpacity,
-    Navigator,
-    Animated,
-    Linking,
-    Dimensions,
-    WebView,
-} from 'react-native';
+} from '../components/Libraries';
 import BaseComponent from '../core/BaseComponent';
 import CommentList from './CommentList';
 
@@ -58,23 +52,23 @@ export default class UserDetail extends BaseComponent {
 		            />
 		        </View>
                 <View style={styles.title}>
-                    <Text style={window.theme.text}>{this.state.bean.name}</Text>
+                    <Text>{this.state.bean.name}</Text>
                 </View>
                 <View style={styles.subTitle}>
-                	<Text style={window.theme.text}>性别：</Text>
-	            	<Text style={[window.theme.text, styles.rowRight]}>
+                	<Text>性别：</Text>
+	            	<Text style={styles.rowRight}>
                 		{this.state.bean.gender == 1 ? '男' : '女'}
                 	</Text>
                 </View>
                 <View style={styles.subTitle}>
-	            	<Text style={window.theme.text}>地区：</Text>
-	            	<Text style={[window.theme.text, styles.rowRight]}>
+	            	<Text>地区：</Text>
+	            	<Text style={styles.rowRight}>
 	            		{this.state.bean.province} {this.state.bean.city}
 	            	</Text>
 	            </View>
 	            <View style={styles.subTitle}>
-	            	<Text style={window.theme.text}>开发平台：</Text>
-	            	<Text style={[window.theme.text, styles.rowRight]}>
+	            	<Text>开发平台：</Text>
+	            	<Text style={styles.rowRight}>
 	            		{
 	            			!this.state.bean.platforms ? null :
 	            				this.state.bean.platforms.map((m, i) => {
@@ -86,8 +80,8 @@ export default class UserDetail extends BaseComponent {
 	            	</Text>
 	            </View>
 	            <View style={styles.subTitle}>
-	            	<Text style={window.theme.text}>专长领域：</Text>
-	            	<Text style={[window.theme.text, styles.rowRight]}>
+	            	<Text>专长领域：</Text>
+	            	<Text style={styles.rowRight}>
 	            		{
 	            			!this.state.bean.expertise ? null :
 	            				this.state.bean.expertise.map((m, i) => {
@@ -99,14 +93,14 @@ export default class UserDetail extends BaseComponent {
 	            	</Text>
 	            </View>
 	            <View style={styles.subTitle}>
-	            	<Text style={window.theme.text}>加入时间：</Text>
-	            	<Text style={window.theme.text}>
+	            	<Text>加入时间：</Text>
+	            	<Text>
 	            		{this.state.bean.joinTime}
 	            	</Text>
 	            </View>
 	            <View style={styles.subTitle}>
-	            	<Text style={window.theme.text}>最近登录时间：</Text>
-	            	<Text style={[window.theme.text, styles.rowRight]}>
+	            	<Text>最近登录时间：</Text>
+	            	<Text style={styles.rowRight}>
 	            		{this.state.bean.lastLoginTime}
 	            	</Text>
 	            </View>
@@ -142,7 +136,5 @@ const styles = StyleSheet.create({
         height: 100,
         resizeMode: 'contain',
         borderRadius: 50,
-        borderColor: '#ccc',
-        borderWidth: 1,
     },
 });

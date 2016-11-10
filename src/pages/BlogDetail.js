@@ -1,19 +1,14 @@
-import React, { Component, PropTypes } from 'react';
-import {
+import React, {
+    Component,
+    PropTypes,
     StyleSheet,
     View,
-    ListView,
-    ScrollView,
+    Image,
     Text,
     TextInput,
-    Image,
     TouchableOpacity,
-    Navigator,
-    Animated,
-    Linking,
-    Dimensions,
     WebView,
-} from 'react-native';
+} from '../components/Libraries';
 import BaseComponent from '../core/BaseComponent';
 import CommentList from './CommentList';
 import UserDetail from './UserDetail';
@@ -76,7 +71,7 @@ export default class BlogDetail extends BaseComponent {
         return (
             <View style={styles.container}>
                 <View style={styles.title}>
-                    <Text style={window.theme.text}>{this.state.bean.title}</Text>
+                    <Text>{this.state.bean.title}</Text>
                 </View>
                 <View style={styles.subTitle}>
                     <Text style={window.theme.subText}>{this.state.bean.pubDate}</Text>

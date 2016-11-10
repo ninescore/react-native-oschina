@@ -9,7 +9,7 @@ export default class Base {
     // navigationBar
     // --------------------------------------------------
 
-    static navigationBarHeight = 48;
+    static navigationBarHeight = 68;
     static navigationBarContainer = {
         height: Base.navigationBarHeight,
         backgroundColor: Base.primaryColor,

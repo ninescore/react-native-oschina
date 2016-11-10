@@ -1,19 +1,13 @@
-import React, { Component, PropTypes } from 'react';
-import {
+import React, {
+    Component,
+    PropTypes,
     StyleSheet,
     View,
-    ListView,
-    ScrollView,
+    Image,
     Text,
     TextInput,
-    Image,
     TouchableOpacity,
-    Navigator,
-    Animated,
-    Linking,
-    Dimensions,
-    WebView,
-} from 'react-native';
+} from '../components/Libraries';
 import BaseComponent from '../core/BaseComponent';
 import RefreshListView from '../components/RefreshListView';
 import UserDetail from './UserDetail';
@@ -75,7 +69,7 @@ export default class CommentList extends BaseComponent {
                     source={{ uri: rowData.commentPortrait }}
                     />
                 <View style={styles.listItemMain}>
-                    <Text style={window.theme.text}>{rowData.content}</Text>
+                    <Text>{rowData.content}</Text>
                     <View style={styles.listItemMainBottom}>
                         <Text style={[window.theme.subText, styles.pubDate]}>
                             {rowData.pubDate}

@@ -1,17 +1,14 @@
-import React, { Component, PropTypes } from 'react';
-import {
+import React, {
+    Component,
+    PropTypes,
     StyleSheet,
     View,
-    ScrollView,
+    Image,
     Text,
     TextInput,
-    Image,
     TouchableOpacity,
-    Navigator,
-    Animated,
-    Linking,
-    Dimensions,
-} from 'react-native';
+    StatusBar,
+} from '../components/Libraries';
 
 import CustomPrototypes from './CustomPrototypes';
 import Navigation from './Navigation';
@@ -22,16 +19,26 @@ import PopMenu from '../components/PopMenu';
 
 import Config from './Config';
 import * as CommonUtil from '../utils/CommonUtil';
+import Welcome from './Welcome';
 
 export default class Application extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            isWelcome: false,
+        };
+        StatusBar.setTranslucent(true);
+        StatusBar.setBackgroundColor('rgba(255, 255, 255, 0)', true);
         window.application = this;
     }
 
     componentDidMount() {
         CommonUtil.BackAndroidUtil.bind();
+        setTimeout(() => {
+            this.setState({ isWelcome: false, });
+            StatusBar.setHidden(false);
+        }, 3000);
     }
 
     componentWillUnmount() {
@@ -39,10 +46,12 @@ export default class Application extends Component {
     }
 
     reload() {
-        this.setState({r: Date.now()});
+        this.setState({ r: Date.now() });
     }
 
     render() {
+        if (this.state.isWelcome)
+            return <Welcome />;
         return (
             <View style={styles.container}>
                 <NavigationBar />

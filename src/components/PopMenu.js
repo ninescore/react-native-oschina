@@ -1,18 +1,15 @@
-import React, { Component, PropTypes } from 'react';
-import {
+import React, {
+    Component,
+    PropTypes,
     StyleSheet,
     View,
-    ScrollView,
+    Image,
     Text,
     TextInput,
-    Image,
     TouchableOpacity,
-    Navigator,
     Animated,
-    Linking,
-    Dimensions,
     Modal,
-} from 'react-native';
+} from './Libraries';
 
 export default class PopMenu extends Component {
 
@@ -85,7 +82,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'rgba(236,240,241,0.9)',
+        backgroundColor: 'rgba(0,0,0,0.5)',
     },
     btn: {
         backgroundColor: window.theme.primaryColor,

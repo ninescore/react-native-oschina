@@ -1,18 +1,13 @@
-import React, { Component, PropTypes } from 'react';
-import {
+import React, {
+    Component,
+    PropTypes,
     StyleSheet,
     View,
-    ListView,
-    ScrollView,
+    Image,
     Text,
     TextInput,
-    Image,
     TouchableOpacity,
-    Navigator,
-    Animated,
-    Linking,
-    Dimensions,
-} from 'react-native';
+} from '../components/Libraries';
 import BaseComponent from '../core/BaseComponent';
 import RefreshListView from '../components/RefreshListView';
 import NewsDetail from './NewsDetail';
@@ -202,6 +197,7 @@ const styles = StyleSheet.create({
     	flex: 1,
     	height: 35,
     	fontSize: 15,
+        padding: 5,    
     },
     message: {
     	padding: 12,

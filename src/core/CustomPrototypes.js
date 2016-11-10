@@ -75,14 +75,17 @@ Object.defineProperty(Component.prototype, 'request', {
         let p = Promise.race([
             fetch(url, options),
             new Promise(function (resolve, reject) {
-                setTimeout(() => reject(new Error('request timeout')), options.timeout)
+                setTimeout(() => reject(new Error('requestTimeout')), options.timeout)
             })
         ]);
         return p.then(response => response.json()).then(response => response).
             catch(error => {
-                window.toast.show('请求超时，请稍后再试');
-                console.log('request error', error);
+                let message = '系统出错，请稍后重试';
+                if (error === 'requestTimeout')
+                    message = '请求超时，请稍后再试';
+                window.toast.show(message);
                 window.loading.show(false);
+                // console.log('request error', error);
                 return null;
             });
     },

@@ -1,17 +1,15 @@
-import React, { Component, PropTypes } from 'react';
-import {
+import React, {
+    Component,
+    PropTypes,
     StyleSheet,
     View,
-    ScrollView,
+    Image,
     Text,
     TextInput,
-    Image,
     TouchableOpacity,
-    Navigator,
-    Animated,
-    Linking,
-    Dimensions,
-} from 'react-native';
+    Icon,
+} from '../components/Libraries';
+
 import BaseComponent from '../core/BaseComponent';
 import ListViewPage from './ListViewPage';
 import NewsList from './NewsList';

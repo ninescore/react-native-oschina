@@ -26,6 +26,6 @@ window.height = Dimensions.get('window').height;
 window.contentHeight = window.height - window.theme.navigationBarHeight - 25;
 window.pixelRatio = PixelRatio.get();
 
+window.appName = '开源中国(rn版)';
 window.domain = 'https://www.oschina.net';
-window.accessToken = '06f6128f-09ab-4915-b5b3-372392df76cf';
-
+window.accessToken = '9be34f00-5395-4e13-945d-18264159778d';

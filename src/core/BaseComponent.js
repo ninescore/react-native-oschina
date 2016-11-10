@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
-import {
-    AppRegistry,
+import React, {
+    Component,
+    PropTypes,
     StyleSheet,
+    View,
+    Image,
     Text,
-    View
-} from 'react-native';
+    TextInput,
+    TouchableOpacity,
+} from '../components/Libraries';
 
 export default class BaseComponent extends Component {
 
@@ -18,7 +21,7 @@ export default class BaseComponent extends Component {
         const routes = this.props.navigator.getCurrentRoutes();
         let route = routes[routes.length - 1];
         route.componentInstance = this;
-        window.navigationBar.switchScene(route);
+        window.navigationBar && window.navigationBar.switchScene(route);
         // console.log('super.componentWillMount');
     }
 

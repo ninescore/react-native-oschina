@@ -4,18 +4,17 @@
  * Toast.show('提示信息');
  * --------------------------------------------------
  */
-import React, { Component, PropTypes } from 'react';
-import {
-    AppRegistry,
+import React, {
+    Component,
+    PropTypes,
     StyleSheet,
-    Text,
     View,
+    Image,
+    Text,
+    TextInput,
     TouchableOpacity,
-    Linking,
-    WebView,
-    Dimensions,
     Animated,
-} from 'react-native';
+} from './Libraries';
 
 export default class Toast extends Component {
 
@@ -42,13 +41,17 @@ export default class Toast extends Component {
                     this.state.fadeAnim,
                     { toValue: 0, duration: 500 }
                 )
-            ]).start();
+            ]).start(() => {
+                this.setState({
+                    text: null,
+                });
+            });
         });
     }
 
     render() {
         return !this.state.text ? null : (
-            <Animated.View style={[styles.container, {backgroundColor: window.theme.primaryColor}, { opacity: this.state.fadeAnim }]}>
+            <Animated.View style={[styles.container, { backgroundColor: window.theme.primaryColor }, { opacity: this.state.fadeAnim }]}>
                 <Text style={window.theme.textWhite}>{this.state.text}</Text>
             </Animated.View>
         );
@@ -58,11 +61,13 @@ export default class Toast extends Component {
 
 const styles = StyleSheet.create({
     container: {
-//        backgroundColor: '#15a230',
         position: 'absolute',
-        left: window.width * 0.3 / 2,
-        top: 80,
-        width: window.width * 0.7,
+        // left: window.width * 0.3 / 2,
+        // top: 80,
+        // width: window.width * 0.7,
+        left: 0,
+        top: window.theme.navigationBarHeight + 1,
+        width: window.width,
         padding: 10,
         alignItems: 'center',
         justifyContent: 'center',

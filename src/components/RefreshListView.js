@@ -1,22 +1,19 @@
 /**
  * 刷新列表
  */
-import React, { Component, PropTypes } from 'react';
-import {
+import React, {
+    Component,
+    PropTypes,
     StyleSheet,
     View,
-    ScrollView,
-    ListView,
-    RefreshControl,
+    Image,
     Text,
     TextInput,
-    Image,
     TouchableOpacity,
-    Navigator,
-    Animated,
-    Linking,
+    ListView,
+    RefreshControl,
     Dimensions,
-} from 'react-native';
+} from './Libraries';
 
 export default class RefreshListView extends Component {
 
@@ -54,7 +51,7 @@ export default class RefreshListView extends Component {
             return null;
         return (
         	<View style={styles.message}>
-            	<Text style={window.theme.subText}>正在加载中...</Text>
+            	<Text>正在加载中...</Text>
             </View>
         );
     }
@@ -64,7 +61,7 @@ export default class RefreshListView extends Component {
             return null;
         return (
     		<View style={styles.message}>
-            	<Text style={window.theme.text}>正在加载中...</Text>
+            	<Text>正在加载中...</Text>
             </View>
         );
     }

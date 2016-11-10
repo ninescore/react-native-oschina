@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
-import {
-    AppRegistry,
+import React, {
+    Component,
+    PropTypes,
     StyleSheet,
-    Navigator,
-    Text,
     View,
-} from 'react-native';
+    Image,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    Navigator,
+} from '../components/Libraries';
 
 import Index from '../pages/Index';
 

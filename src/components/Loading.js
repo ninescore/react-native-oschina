@@ -1,17 +1,14 @@
-import React, { Component, PropTypes } from 'react';
-import {
-    AppRegistry,
+import React, {
+    Component,
+    PropTypes,
     StyleSheet,
-    Text,
     View,
+    Image,
+    Text,
+    TextInput,
     TouchableOpacity,
-    Linking,
-    WebView,
-    Dimensions,
-    Animated,
     ActivityIndicator,
-    Modal,
-} from 'react-native';
+} from './Libraries';
 
 export default class Loading extends Component {
 
@@ -34,7 +31,7 @@ export default class Loading extends Component {
             return null;
         return (
             <View style={styles.container}>
-                <Text style={[window.theme.text, styles.text]}>正在加载中...</Text>
+                <Text style={styles.text}>正在加载中...</Text>
                 <ActivityIndicator color={window.theme.primaryColor} />
             </View>
         );
