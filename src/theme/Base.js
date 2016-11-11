@@ -1,45 +1,60 @@
 
 export default class Base {
 
-    static primaryColor = '#2ecc71';
-    static secondaryColor = '#27ae60';
-    static embellishmentColor = '#e67e22';
+    primaryColor = '#2ac25f';
+    secondaryColor = '#2ed069';
+    embellishmentColor = '#e67e22';
 
     // --------------------------------------------------
     // navigationBar
     // --------------------------------------------------
 
-    static navigationBarHeight = 68;
-    static navigationBarContainer = {
-        height: Base.navigationBarHeight,
-        backgroundColor: Base.primaryColor,
+    navigationBarHeight = 68;
+    get navigationBarContainer() {
+        return {
+            height: this.navigationBarHeight,
+            backgroundColor: this.primaryColor,
+        }
     }
 
     // --------------------------------------------------
     // content
     // --------------------------------------------------
 
-    static contentColor = '#ecf0f1';
-    static subColor = '#bbb';
-    static contentContainer = {
-        flex: 1,
-        backgroundColor: Base.contentColor,
+    contentColor = '#ecf0f1';
+    mainColor = '#666';
+    subColor = '#bbb';
+    whiteColor = '#fff';
+
+    get contentContainer() {
+        return {
+            flex: 1,
+            backgroundColor: this.contentColor,
+        }
     }
-    static text = {
-    	color: '#666',
-        fontSize: 15,
+    get text() {
+        return {
+            color: this.mainColor,
+            fontSize: 15,
+        }
     }
-    static textWhite = {
-    	color: '#fff',
-        fontSize: 15,
+    get whiteText() {
+        return {
+            color: this.whiteColor,
+            fontSize: 15,
+        }
     }
-    static subText = {
-        color: '#bbb',
-        fontSize: 13,
+    get subText() {
+        return {
+            color: this.subColor,
+            fontSize: 15,
+        }
     }
-    static link = {
-        color: Base.embellishmentColor,
-        fontSize: 13,
+    get link() {
+        return {
+            color: this.embellishmentColor,
+            fontSize: 13,
+        }
     }
 
 }

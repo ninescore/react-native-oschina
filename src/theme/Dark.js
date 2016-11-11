@@ -2,25 +2,15 @@ import Base from './Base';
 
 export default class Dark extends Base {
 
-    static navigationBarHeight = 40;
+    primaryColor = '#666';
+    secondaryColor = '#999';
+    embellishmentColor = '#999';
 
-    static navigationBarContainer = {
-        height: Dark.navigationBarHeight,
-        backgroundColor: '#666',
-    }
-
-    static navigationBarText = {
-        color: '#ddd',
-        fontSize: 14,
-    }
-
-    // --------------------------------------------------
-    // content
-    // --------------------------------------------------
-
-    static contentContainer = {
-        flex: 1,
-        backgroundColor: '#999',
-    }
+    contentColor = '#ecf0f1';
+    mainColor = '#666';
+    subColor = '#bbb';
+    whiteColor = '#ccc';
 
 }
+
+console.log('Dark.navigationBarContainer', Dark.navigationBarContainer);

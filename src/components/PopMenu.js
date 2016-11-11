@@ -9,6 +9,7 @@ import React, {
     TouchableOpacity,
     Animated,
     Modal,
+    Icon,
 } from './Libraries';
 
 export default class PopMenu extends Component {
@@ -17,18 +18,45 @@ export default class PopMenu extends Component {
         super(props);
         this.state = {
             menu: null,
+            fadeAnim: new Animated.Value(0),
         };
         this.callback = null;
+        this.toValue = null;
+        this.animatedStyle = null;
         window.popMenu = this;
     }
 
-    show(menu, callback) {
-        this.setState({ menu });
+    // popDirection (default: 'toDown')
+    show(menu, popDirection, callback) {
         this.callback = callback;
+        this.state.fadeAnim = new Animated.Value(0);
+        this.toValue = window.theme.navigationBarHeight;
+        this.animatedStyle = { top: this.state.fadeAnim };
+        if (popDirection == 'toUp') {
+            this.state.fadeAnim = new Animated.Value(-100);
+            this.toValue = 0;
+            this.animatedStyle = { bottom: this.state.fadeAnim };
+        }
+
+        this.setState({
+            menu,
+        }, () => {
+            Animated.sequence([
+                Animated.timing(
+                    this.state.fadeAnim,
+                    { toValue: this.toValue, duration: 200 }
+                ),
+            ]).start();
+        });
     }
 
     hide() {
-        this.setState({ menu: null });
+        let isShow = this.state.menu != null ? true : false;
+        this.setState({
+            menu: null,
+            fadeAnim: new Animated.Value(0),
+        });
+        return isShow;
     }
 
     onPressSpace() {
@@ -46,51 +74,77 @@ export default class PopMenu extends Component {
         if (!this.state.menu)
             return null;
         return (
-            <Modal
-                animationType="fade"
-                transparent={true}
-                onRequestClose={this.hide.bind(this)}>
-                <TouchableOpacity
-                    style={styles.container}
-                    onPress={this.onPressSpace.bind(this)}>
+            <TouchableOpacity
+                style={styles.container}
+                onPress={this.onPressSpace.bind(this)}>
+                <Animated.View
+                    style={[
+                        styles.main,
+                        { backgroundColor: window.theme.whiteColor },
+                        this.animatedStyle
+                    ]}>
                     {this.renderMenu()}
-                </TouchableOpacity>
-            </Modal>
+                </Animated.View>
+            </TouchableOpacity>
         );
     }
 
     renderMenu() {
-        return this.state.menu.children.map((m, i) => {
-            let styleArr = [styles.btn];
-            if (this.state.menu.selectedId == m.id)
-                styleArr.push(styles.btnSelected);
-            return (
+        let arr = [];
+        arr.push(
+            <View key={-1}
+                style={[
+                    styles.btn,
+                    { backgroundColor: window.theme.primaryColor },
+                    styles.btnFirst
+                ]}>
+                <Text style={window.theme.whiteText}>请选择...</Text>
+            </View>
+        );
+        this.state.menu.children.map((m, i) => {
+            arr.push(
                 <TouchableOpacity
                     key={i}
-                    style={styleArr}
+                    style={[
+                        styles.btn,
+                        { backgroundColor: window.theme.primaryColor }
+                    ]}
                     onPress={this.onPressMenu.bind(this, m)}>
-                    <Text style={window.theme.textWhite}>{m.name}</Text>
+                    <Text style={window.theme.whiteText}>{m.name}</Text>
+                    {
+                        this.state.menu.selectedId != m.id ? null : <Icon name="ios-checkmark" />
+                    }
                 </TouchableOpacity>
             );
         });
+        return arr;
     }
 
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'rgba(0,0,0,0.5)',
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        width: window.width,
+        height: window.height,
+    },
+    main: {
+        position: 'absolute',
+        left: 0,
+        marginTop: 1,
     },
     btn: {
-        backgroundColor: window.theme.primaryColor,
-        width: window.width * 0.7,
-        padding: 10,
-        marginBottom: StyleSheet.hairlineWidth,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: window.width,
+        paddingHorizontal: 12,
+        height: 45,
+        alignItems: 'center',
+        marginTop: 1,
     },
-    btnSelected: {
-    	backgroundColor: window.theme.embellishmentColor,
+    btnFirst: {
+        marginTop: 0,
     },
 });

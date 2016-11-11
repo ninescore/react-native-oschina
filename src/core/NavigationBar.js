@@ -38,15 +38,6 @@ export default class NavigationBar extends Component {
     switchScene(route) {
         if (!route.componentInstance)
             return false;
-        if (route.componentInstance.rightButton) {
-            route.componentInstance.rightButton.forEach((m) => {
-                m.children && m.children.forEach((n) => {
-                    if (m.selectedId == n.id) {
-                        m.displayName = `${m.name} - ${n.name}`;
-                    }
-                });
-            });
-        }
         this.setState({
             title: route.componentInstance.title,
             isShowLeftButton: route.componentInstance.isShowLeftButton === undefined ? true : route.componentInstance.isShowLeftButton,
@@ -59,9 +50,8 @@ export default class NavigationBar extends Component {
             menu.onPress();
             return false;
         }
-        window.popMenu.show(menu, (subMenu) => {
+        window.popMenu.show(menu, 'toDown', (subMenu) => {
             menu.selectedId = subMenu.id;
-            menu.displayName = `${menu.name} - ${subMenu.name}`;
             this.setState({
                 rightButton: this.state.rightButton,
             });
@@ -77,7 +67,7 @@ export default class NavigationBar extends Component {
                 <TouchableOpacity
                     style={styles.btn}
                     onPress={this.goHome.bind(this)}>
-                    <Text style={window.theme.textWhite}>{this.state.title}</Text>
+                    <Text style={window.theme.whiteText}>{this.state.title}</Text>
                 </TouchableOpacity>
                 <View style={styles.right}>
                     {this.renderRight()}
@@ -98,8 +88,6 @@ export default class NavigationBar extends Component {
                 <Icon name="ios-arrow-round-back" />
             </TouchableOpacity>
         );
-        // buttons.push(<View key={2} style={styles.cutLine}></View>);
-        // buttons.push(<Text key={2} style={window.theme.textWhite}>|</Text>);
         return buttons;
     }
 
@@ -113,8 +101,8 @@ export default class NavigationBar extends Component {
                     style={styles.btn}
                     onPress={this.onPressRightButton.bind(this, m)}
                     >
-                    <Text style={window.theme.textWhite}>
-                        {m.displayName}
+                    <Text style={window.theme.whiteText}>
+                        {m.name}
                     </Text>
                 </TouchableOpacity>
             );
@@ -128,11 +116,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         paddingTop: 25,
-    },
-    cutLine: {
-        alignSelf: 'stretch',
-        width: StyleSheet.hairlineWidth,
-        backgroundColor: 'rgba(255,255,255,1)',
     },
     right: {
         flex: 1,

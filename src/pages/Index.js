@@ -99,11 +99,11 @@ export default class Index extends BaseComponent {
                                 name: '夜间',
                             }]
                         };
-                        window.popMenu.show(menu, (m) => {
+                        window.popMenu.show(menu, 'toUp', (m) => {
                             if (m.id == 1)
-                                window.theme = Base;
+                                window.theme = new Base();
                             else if (m.id == 2)
-                                window.theme = Dark;
+                                window.theme = new Dark();
                             // Navigation.resetTo({
                             //     component: Index,
                             // });

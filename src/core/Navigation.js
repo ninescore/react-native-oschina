@@ -25,8 +25,7 @@ export default class RootNavigation extends Component {
     renderScene(route, navigator) {
         if (!window.navigation)
             window.navigation = navigator;
-        let Component = route.component;
-        return <Component {...route.params} navigator={navigator} />;
+        return <route.component {...route.params} navigator={navigator} />;
     }
 
     onWillFocus(route) {

@@ -12,7 +12,7 @@ import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 export class Icon extends Component {
 
     static propTypes = {
-        size: PropTypes.string,
+        size: PropTypes.number,
         color: PropTypes.string,
         lib: PropTypes.string,
     };
@@ -51,9 +51,9 @@ export class Icon extends Component {
     }
 
     render() {
-        let component = this.getComponent(this.props.lib);
+        let IconComponent = this.getComponent(this.props.lib);
         return (
-            <component name={this.props.name}
+            <IconComponent name={this.props.name}
                 size={this.props.size}
                 color={this.props.color}
             />

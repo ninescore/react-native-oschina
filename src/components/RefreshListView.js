@@ -140,7 +140,7 @@ export default class RefreshListView extends Component {
                         <TouchableOpacity
                             style={styles.backTop}
                             onPress={this.onBackTop.bind(this)}>
-                            <Text style={window.theme.textWhite}>Top</Text>
+                            <Text style={window.theme.whiteText}>Top</Text>
                         </TouchableOpacity>
                 }
             </View>
@@ -165,8 +165,5 @@ const styles = StyleSheet.create({
         bottom: 12,
         backgroundColor: 'gray',
         padding: 10,
-    },
-    backTopTxt: {
-        color: '#fff',
     },
 });

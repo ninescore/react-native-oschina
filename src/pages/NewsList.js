@@ -82,7 +82,10 @@ export default class NewsList extends BaseComponent {
     renderRow(rowData) {
         return (
             <TouchableOpacity
-                style={styles.listItem}
+                style={[
+                    styles.listItem,
+                    { backgroundColor: window.theme.whiteColor },
+                ]}
                 onPress={this.onPress.bind(this, rowData.id)}
                 >
                 <Text style={[window.theme.text, styles.title]}>{rowData.title}</Text>
@@ -92,13 +95,13 @@ export default class NewsList extends BaseComponent {
     }
 
     render() {
-    	if (this.state.loaded && this.state.dataSource.getRowCount() == 0) {
-    		return (
-    			<View style={styles.message}>
-    				<Text style={window.theme.subText}>暂无评论</Text>
-    			</View>
-    		);
-    	}
+        if (this.state.loaded && this.state.dataSource.getRowCount() == 0) {
+            return (
+                <View style={styles.message}>
+                    <Text style={window.theme.subText}>暂无评论</Text>
+                </View>
+            );
+        }
         return (
             <View style={styles.container}>
                 <RefreshListView
@@ -119,14 +122,13 @@ const styles = StyleSheet.create({
     listItem: {
         marginBottom: 1,
         padding: 12,
-        backgroundColor: '#fff',
     },
     title: {
-    	marginBottom: 5,
+        marginBottom: 5,
     },
     message: {
-    	padding: 12,
-    	alignItems: 'center',
+        padding: 12,
+        alignItems: 'center',
         justifyContent: 'center',
     },
 });

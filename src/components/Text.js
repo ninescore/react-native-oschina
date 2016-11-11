@@ -13,9 +13,6 @@ export class Text extends Component {
                 {
                     React.Children.map(this.props.children, (child) => {
                         return child;
-                        // if (child) {
-                        //     return React.cloneElement(child);
-                        // }
                     })
                 }
             </TextComponent>

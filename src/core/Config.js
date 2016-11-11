@@ -16,7 +16,7 @@ import {
 import Base from '../theme/Base';
 import Dark from '../theme/Dark';
 
-window.theme = Base;
+window.theme = new Base();
 window.toast = null;
 window.navigation = null;
 window.navigationBar = null;

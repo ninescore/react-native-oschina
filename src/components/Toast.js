@@ -34,16 +34,13 @@ export default class Toast extends Component {
             Animated.sequence([
                 Animated.timing(
                     this.state.fadeAnim,
-                    { toValue: 1, duration: 300 }
+                    { toValue: window.theme.navigationBarHeight + 1, duration: 200 }
                 ),
                 Animated.delay(2000),
-                Animated.timing(
-                    this.state.fadeAnim,
-                    { toValue: 0, duration: 500 }
-                )
             ]).start(() => {
                 this.setState({
                     text: null,
+                    fadeAnim: new Animated.Value(0),
                 });
             });
         });
@@ -51,8 +48,13 @@ export default class Toast extends Component {
 
     render() {
         return !this.state.text ? null : (
-            <Animated.View style={[styles.container, { backgroundColor: window.theme.primaryColor }, { opacity: this.state.fadeAnim }]}>
-                <Text style={window.theme.textWhite}>{this.state.text}</Text>
+            <Animated.View
+                style={[
+                    styles.container,
+                    { backgroundColor: window.theme.primaryColor },
+                    { top: this.state.fadeAnim }
+                ]}>
+                <Text style={window.theme.whiteText}>{this.state.text}</Text>
             </Animated.View>
         );
     }
@@ -62,11 +64,7 @@ export default class Toast extends Component {
 const styles = StyleSheet.create({
     container: {
         position: 'absolute',
-        // left: window.width * 0.3 / 2,
-        // top: 80,
-        // width: window.width * 0.7,
         left: 0,
-        top: window.theme.navigationBarHeight + 1,
         width: window.width,
         padding: 10,
         alignItems: 'center',

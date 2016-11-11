@@ -48,6 +48,9 @@ export let BackAndroidUtil = {
             if (result !== null)
                 return true;
         }
+        let isHideMenu = window.popMenu.hide();
+        if (isHideMenu)
+            return true;
         if (window.navigation.getCurrentRoutes().length == 1) {
             if (BackAndroidUtil.lastDate && BackAndroidUtil.lastDate + 2000 >= Date.now()) {
                 return false;

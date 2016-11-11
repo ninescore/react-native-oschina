@@ -7,6 +7,7 @@ import React, {
     Text,
     TextInput,
     TouchableOpacity,
+    ListView,
 } from '../components/Libraries';
 import BaseComponent from '../core/BaseComponent';
 import RefreshListView from '../components/RefreshListView';
@@ -146,7 +147,7 @@ export default class NewsList extends BaseComponent {
 		            <TouchableOpacity
 		                style={[styles.btn, {backgroundColor: window.theme.embellishmentColor}]}
 		                onPress={this.onSearch.bind(this)}>
-		                <Text style={window.theme.textWhite}>搜索</Text>
+		                <Text style={window.theme.whiteText}>搜索</Text>
 		            </TouchableOpacity>
             	</View>
             	{
