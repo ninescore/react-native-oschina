@@ -90,6 +90,7 @@ export default class Index extends BaseComponent {
                     style={styles.item}
                     onPress={() => {
                         let menu = {
+                        	name: '主题',
                             selectedId: 1,
                             children: [{
                                 id: 1,

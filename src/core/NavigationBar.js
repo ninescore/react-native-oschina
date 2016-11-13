@@ -20,9 +20,9 @@ export default class NavigationBar extends Component {
         super(props);
         this.state = {
             leftButton: null,
-            title: null,
+            title: '首页',
             rightButton: null,
-            isShowLeftButton: true,
+            isShowLeftButton: false,
         };
         window.navigationBar = this;
     }
@@ -40,7 +40,8 @@ export default class NavigationBar extends Component {
             return false;
         this.setState({
             title: route.componentInstance.title,
-            isShowLeftButton: route.componentInstance.isShowLeftButton === undefined ? true : route.componentInstance.isShowLeftButton,
+            isShowLeftButton: route.componentInstance.title == '首页' ? false : true,
+//            isShowLeftButton: route.componentInstance.isShowLeftButton === undefined ? true : route.componentInstance.isShowLeftButton,
             rightButton: route.componentInstance.rightButton,
         });
     }
@@ -116,6 +117,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         paddingTop: 25,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: window.width,
     },
     right: {
         flex: 1,

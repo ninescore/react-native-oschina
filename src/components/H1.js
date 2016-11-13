@@ -1,22 +1,28 @@
 import React, { Component, PropTypes } from 'react';
 import {
     StyleSheet,
-    Text as RNText,
+    Text,
 } from 'react-native';
 
-export class Text extends Component {
+export class H1 extends Component {
 
     render() {
         return (
-            <RNText {...this.props}
-                style={[window.theme.text, this.props.style]}>
+            <Text {...this.props}
+                style={[this.props.style, styles.text]}>
                 {
                     React.Children.map(this.props.children, (child) => {
                         return child;
                     })
                 }
-            </RNText>
+            </Text>
         );
     }
 
 }
+
+const styles = StyleSheet.create({
+	text: {
+        fontSize: 24,
+    },
+});

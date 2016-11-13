@@ -30,6 +30,7 @@ export default class Base {
         return {
             flex: 1,
             backgroundColor: this.contentColor,
+            marginTop: this.navigationBarHeight,
         }
     }
     get text() {

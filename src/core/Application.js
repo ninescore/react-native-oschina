@@ -26,7 +26,7 @@ export default class Application extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isWelcome: false,
+            isWelcome: true,
         };
         StatusBar.setTranslucent(true);
         StatusBar.setBackgroundColor('rgba(255, 255, 255, 0)', true);
@@ -38,7 +38,7 @@ export default class Application extends Component {
         setTimeout(() => {
             this.setState({ isWelcome: false, });
             StatusBar.setHidden(false);
-        }, 3000);
+        }, 500);
     }
 
     componentWillUnmount() {
@@ -53,12 +53,12 @@ export default class Application extends Component {
         if (this.state.isWelcome)
             return <Welcome />;
         return (
-            <View style={styles.container}>
-                <NavigationBar />
+            <View style={[styles.container, {marginTop: window.isSupportStatusBarTransparency ? 0 : -window.statusBarHeight}]}>
                 <Navigation />
                 <PopMenu />
-                <Loading />
                 <Toast />
+                <NavigationBar />
+                <Loading />
             </View>
         );
     }

@@ -18,22 +18,28 @@ export default class PopMenu extends Component {
         super(props);
         this.state = {
             menu: null,
-            fadeAnim: new Animated.Value(0),
+            fadeAnim: new Animated.Value(-100),
         };
         this.callback = null;
         this.toValue = null;
         this.animatedStyle = null;
         window.popMenu = this;
     }
+    
+    componentDidMount() {
+    	if (window.navigation) {
+    		window.navigation.navigationContext.addListener('willfocus', () => {
+    			this.hide();
+    		})
+    	}
+    }
 
     // popDirection (default: 'toDown')
     show(menu, popDirection, callback) {
         this.callback = callback;
-        this.state.fadeAnim = new Animated.Value(0);
         this.toValue = window.theme.navigationBarHeight;
         this.animatedStyle = { top: this.state.fadeAnim };
         if (popDirection == 'toUp') {
-            this.state.fadeAnim = new Animated.Value(-100);
             this.toValue = 0;
             this.animatedStyle = { bottom: this.state.fadeAnim };
         }
@@ -54,7 +60,7 @@ export default class PopMenu extends Component {
         let isShow = this.state.menu != null ? true : false;
         this.setState({
             menu: null,
-            fadeAnim: new Animated.Value(0),
+            fadeAnim: new Animated.Value(-100),
         });
         return isShow;
     }
@@ -98,7 +104,7 @@ export default class PopMenu extends Component {
                     { backgroundColor: window.theme.primaryColor },
                     styles.btnFirst
                 ]}>
-                <Text style={window.theme.whiteText}>请选择...</Text>
+                <Text style={window.theme.whiteText}>请选择{this.state.menu.name}：</Text>
             </View>
         );
         this.state.menu.children.map((m, i) => {
