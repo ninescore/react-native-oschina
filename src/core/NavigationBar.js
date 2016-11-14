@@ -1,7 +1,8 @@
 /**
  * 导航栏
  */
-import React, {
+import {
+    React,
     Component,
     PropTypes,
     StyleSheet,
@@ -11,8 +12,8 @@ import React, {
     TextInput,
     TouchableOpacity,
     Icon,
-} from '../components/Libraries';
-import * as CommonUtil from '../utils/CommonUtil';
+} from './Libraries';
+import * as Utils from './Utils';
 
 export default class NavigationBar extends Component {
 
@@ -28,7 +29,7 @@ export default class NavigationBar extends Component {
     }
 
     goBack() {
-        CommonUtil.BackAndroidUtil.defaultBackFn();
+        Utils.BackAndroidUtil.defaultBackFn();
     }
 
     goHome() {
@@ -80,8 +81,7 @@ export default class NavigationBar extends Component {
     renderLeft() {
         if (!this.state.isShowLeftButton)
             return null;
-        let buttons = [];
-        buttons.push(
+        return (
             <TouchableOpacity
                 key={1}
                 style={styles.btn}
@@ -89,7 +89,6 @@ export default class NavigationBar extends Component {
                 <Icon name="ios-arrow-round-back" />
             </TouchableOpacity>
         );
-        return buttons;
     }
 
     renderRight() {

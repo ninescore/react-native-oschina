@@ -1,4 +1,5 @@
-import React, {
+import {
+    React,
     Component,
     PropTypes,
     StyleSheet,
@@ -9,7 +10,7 @@ import React, {
     TouchableOpacity,
     StatusBar,
     H1,
-} from '../components/Libraries';
+} from './Libraries';
 
 export default class Welcome extends Component {
 

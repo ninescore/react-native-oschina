@@ -1,20 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import {
     StyleSheet,
-    Text,
 } from 'react-native';
+import Text from './Text';
 
-export class H1 extends Component {
+export default class H1 extends Component {
 
     render() {
         return (
             <Text {...this.props}
                 style={[this.props.style, styles.text]}>
-                {
-                    React.Children.map(this.props.children, (child) => {
-                        return child;
-                    })
-                }
+                {this.props.children}
             </Text>
         );
     }
@@ -22,7 +18,7 @@ export class H1 extends Component {
 }
 
 const styles = StyleSheet.create({
-	text: {
+    text: {
         fontSize: 24,
     },
 });

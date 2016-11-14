@@ -12,5 +12,3 @@ export default class Dark extends Base {
     whiteColor = '#ccc';
 
 }
-
-console.log('Dark.navigationBarContainer', Dark.navigationBarContainer);

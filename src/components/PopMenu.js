@@ -1,4 +1,5 @@
-import React, {
+import {
+    React,
     Component,
     PropTypes,
     StyleSheet,
@@ -10,7 +11,7 @@ import React, {
     Animated,
     Modal,
     Icon,
-} from './Libraries';
+} from '../core/Libraries';
 
 export default class PopMenu extends Component {
 

@@ -1,5 +1,6 @@
-import React, {
-    Component,
+import {
+    React,
+    BaseComponent,
     PropTypes,
     StyleSheet,
     View,
@@ -8,15 +9,14 @@ import React, {
     TextInput,
     TouchableOpacity,
     WebView,
-} from '../components/Libraries';
-import BaseComponent from '../core/BaseComponent';
+} from '../../core/Libraries';
 import CommentList from './CommentList';
 import UserDetail from './UserDetail';
 
-export default class BlogDetail extends BaseComponent {
+export default class NewsDetail extends BaseComponent {
 
     constructor(props) {
-        super(props, '博客详情');
+        super(props, '资讯详情');
         this.state = {
             bean: null,
         }
@@ -33,7 +33,7 @@ export default class BlogDetail extends BaseComponent {
             id: this.props.id,
             dataType: 'json',
         };
-        let url = `${window.domain}/action/openapi/blog_detail?${Object.parseParam(params)}`;
+        let url = `${window.domain}/action/openapi/news_detail?${Object.parseParam(params)}`;
         let response = await this.request(url);
         if (response && response.body) {
             let body = response.body.replace(/font-size/g, 'f');
@@ -59,7 +59,7 @@ export default class BlogDetail extends BaseComponent {
             component: CommentList,
             params: {
                 id: this.state.bean.id,
-                catalog: 5,
+                catalog: 1,
                 commentCount: this.state.bean.commentCount,
             }
         });

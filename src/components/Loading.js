@@ -1,4 +1,5 @@
-import React, {
+import {
+    React,
     Component,
     PropTypes,
     StyleSheet,
@@ -8,7 +9,7 @@ import React, {
     TextInput,
     TouchableOpacity,
     ActivityIndicator,
-} from './Libraries';
+} from '../core/Libraries';
 
 export default class Loading extends Component {
 
@@ -30,7 +31,7 @@ export default class Loading extends Component {
         if (!this.state.visible)
             return null;
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, {top: window.theme.navigationBarHeight}]}>
                 <Text style={styles.text}>正在加载中...</Text>
                 <ActivityIndicator color={window.theme.primaryColor} />
             </View>
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255,255,255,0.9)',
         position: 'absolute',
         left: 0,
-        top: window.theme.navigationBarHeight,
+        // top: window.theme.navigationBarHeight,
         width: window.width,
         height: window.contentHeight,
         alignItems: 'center',

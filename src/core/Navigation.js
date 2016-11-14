@@ -1,4 +1,5 @@
-import React, {
+import {
+    React,
     Component,
     PropTypes,
     StyleSheet,
@@ -8,9 +9,9 @@ import React, {
     TextInput,
     TouchableOpacity,
     Navigator,
-} from '../components/Libraries';
+} from './Libraries';
 
-import Index from '../pages/Index';
+import Index from '../pages/oschina/Index';
 
 export default class RootNavigation extends Component {
 

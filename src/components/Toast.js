@@ -1,20 +1,10 @@
-/**
- * 提示信息
- * --------------------------------------------------
- * Toast.show('提示信息');
- * --------------------------------------------------
- */
-import React, {
-    Component,
-    PropTypes,
+import React, { Component, PropTypes } from 'react';
+import {
     StyleSheet,
     View,
-    Image,
-    Text,
-    TextInput,
-    TouchableOpacity,
     Animated,
-} from './Libraries';
+} from 'react-native';
+import Text from './Text';
 
 export default class Toast extends Component {
 

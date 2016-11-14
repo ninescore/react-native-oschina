@@ -1,19 +1,15 @@
-/**
- * 刷新列表
- */
-import React, {
-    Component,
-    PropTypes,
+import React, { Component, PropTypes } from 'react';
+import {
     StyleSheet,
     View,
     Image,
-    Text,
     TextInput,
     TouchableOpacity,
     ListView,
     RefreshControl,
     Dimensions,
-} from './Libraries';
+} from 'react-native';
+import Text from './Text';
 
 export default class RefreshListView extends Component {
 
@@ -50,8 +46,8 @@ export default class RefreshListView extends Component {
         if (!this.state.refreshing)
             return null;
         return (
-        	<View style={styles.message}>
-            	<Text>正在加载中...</Text>
+            <View style={styles.message}>
+                <Text>正在加载中...</Text>
             </View>
         );
     }
@@ -60,8 +56,8 @@ export default class RefreshListView extends Component {
         if (!this.state.loading)
             return null;
         return (
-    		<View style={styles.message}>
-            	<Text>正在加载中...</Text>
+            <View style={styles.message}>
+                <Text>正在加载中...</Text>
             </View>
         );
     }

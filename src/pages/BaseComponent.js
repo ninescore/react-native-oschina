@@ -1,4 +1,5 @@
-import React, {
+import {
+    React,
     Component,
     PropTypes,
     StyleSheet,
@@ -7,7 +8,7 @@ import React, {
     Text,
     TextInput,
     TouchableOpacity,
-} from '../components/Libraries';
+} from '../core/Libraries';
 
 export default class BaseComponent extends Component {
 

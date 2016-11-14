@@ -1,4 +1,5 @@
-import React, {
+import {
+    React,
     Component,
     PropTypes,
     StyleSheet,
@@ -8,8 +9,9 @@ import React, {
     TextInput,
     TouchableOpacity,
     StatusBar,
-} from '../components/Libraries';
+} from './Libraries';
 
+import Config from './Config';
 import CustomPrototypes from './CustomPrototypes';
 import Navigation from './Navigation';
 import NavigationBar from './NavigationBar';
@@ -17,8 +19,7 @@ import Toast from '../components/Toast';
 import Loading from '../components/Loading';
 import PopMenu from '../components/PopMenu';
 
-import Config from './Config';
-import * as CommonUtil from '../utils/CommonUtil';
+import * as Utils from './Utils';
 import Welcome from './Welcome';
 
 export default class Application extends Component {
@@ -34,7 +35,7 @@ export default class Application extends Component {
     }
 
     componentDidMount() {
-        CommonUtil.BackAndroidUtil.bind();
+        Utils.BackAndroidUtil.bind();
         setTimeout(() => {
             this.setState({ isWelcome: false, });
             StatusBar.setHidden(false);
@@ -42,11 +43,7 @@ export default class Application extends Component {
     }
 
     componentWillUnmount() {
-        CommonUtil.BackAndroidUtil.unbind();
-    }
-
-    reload() {
-        this.setState({ r: Date.now() });
+        Utils.BackAndroidUtil.unbind();
     }
 
     render() {

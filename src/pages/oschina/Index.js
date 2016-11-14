@@ -1,5 +1,6 @@
-import React, {
-    Component,
+import {
+    React,
+    BaseComponent,
     PropTypes,
     StyleSheet,
     View,
@@ -8,15 +9,12 @@ import React, {
     TextInput,
     TouchableOpacity,
     Icon,
-} from '../components/Libraries';
-
-import BaseComponent from '../core/BaseComponent';
-import ListViewPage from './ListViewPage';
+} from '../../core/Libraries';
 import NewsList from './NewsList';
 import BlogList from './BlogList';
 import SearchList from './SearchList';
-import Base from '../theme/Base';
-import Dark from '../theme/Dark';
+import Base from '../../theme/Base';
+import Dark from '../../theme/Dark';
 
 export default class Index extends BaseComponent {
 
@@ -44,16 +42,6 @@ export default class Index extends BaseComponent {
                         window.loading.show(true);
                     } }>
                     <Text>Loading</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={styles.item}
-                    onPress={() => {
-                        this.props.navigator.push({
-                            component: ListViewPage,
-                        });
-                    } }>
-                    <Text>ListView</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -108,7 +96,7 @@ export default class Index extends BaseComponent {
                             // Navigation.resetTo({
                             //     component: Index,
                             // });
-                            window.application.reload();
+                            window.application.forceUpdate();
                             // TODO 
                         });
                     } }>

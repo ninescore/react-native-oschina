@@ -1,5 +1,6 @@
-import React, {
-    Component,
+import {
+    React,
+    BaseComponent,
     PropTypes,
     StyleSheet,
     View,
@@ -8,15 +9,14 @@ import React, {
     TextInput,
     TouchableOpacity,
     ListView,
-} from '../components/Libraries';
-import BaseComponent from '../core/BaseComponent';
-import RefreshListView from '../components/RefreshListView';
-import BlogDetail from './BlogDetail';
+    RefreshListView,
+} from '../../core/Libraries';
+import NewsDetail from './NewsDetail';
 
-export default class BlogList extends BaseComponent {
+export default class NewsList extends BaseComponent {
 
     constructor(props) {
-        super(props, '博客列表');
+        super(props, '资讯列表');
         this.state = {
             dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }),
             pageSize: 20,
@@ -25,6 +25,24 @@ export default class BlogList extends BaseComponent {
         }
         this.listData = [];
         this.catalog = 1;
+        this.rightButton = [{
+            id: 1,
+            name: '类别',
+            selectedId: 1,
+            children: [{
+                id: 1,
+                name: '全部',
+                onPress: this.onPressRightButton.bind(this, 1),
+            }, {
+                id: 2,
+                name: '综合资讯',
+                onPress: this.onPressRightButton.bind(this, 2),
+            }, {
+                id: 3,
+                name: '软件更新',
+                onPress: this.onPressRightButton.bind(this, 3),
+            }]
+        }];
     }
 
     async onFetch(pageNo) {
@@ -32,13 +50,14 @@ export default class BlogList extends BaseComponent {
             this.listData = [];
         let params = {
             access_token: window.accessToken,
+            catalog: this.catalog,
             page: pageNo,
             pageSize: this.state.pageSize,
             dataType: 'json',
         };
-        let url = `${window.domain}/action/openapi/blog_list?${Object.parseParam(params)}`;
+        let url = `${window.domain}/action/openapi/news_list?${Object.parseParam(params)}`;
         let response = await this.request(url);
-        this.listData = this.listData.concat(response.bloglist);
+        this.listData = this.listData.concat(response.newslist);
         this.setState({
             dataSource: this.state.dataSource.cloneWithRows(this.listData),
             pageCount: 999999,
@@ -48,33 +67,41 @@ export default class BlogList extends BaseComponent {
 
     onPress(id) {
         this.props.navigator.push({
-            component: BlogDetail,
+            component: NewsDetail,
             params: {
                 id
             },
         });
     }
 
+    onPressRightButton(id) {
+        this.catalog = id;
+        this.onFetch(1);
+    }
+
     renderRow(rowData) {
         return (
             <TouchableOpacity
-                style={styles.listItem}
+                style={[
+                    styles.listItem,
+                    { backgroundColor: window.theme.whiteColor },
+                ]}
                 onPress={this.onPress.bind(this, rowData.id)}
                 >
                 <Text style={[window.theme.text, styles.title]}>{rowData.title}</Text>
-                <Text style={window.theme.subText}>{rowData.pubDate} {rowData.type == 1 ? '原创' : '转载'}</Text>
+                <Text style={window.theme.subText}>{rowData.pubDate}</Text>
             </TouchableOpacity>
         );
     }
 
     render() {
-    	if (this.state.loaded && this.state.dataSource.getRowCount() == 0) {
-    		return (
-    			<View style={styles.message}>
-    				<Text style={window.theme.subText}>暂无评论</Text>
-    			</View>
-    		);
-    	}
+        if (this.state.loaded && this.state.dataSource.getRowCount() == 0) {
+            return (
+                <View style={styles.message}>
+                    <Text style={window.theme.subText}>暂无评论</Text>
+                </View>
+            );
+        }
         return (
             <View style={styles.container}>
                 <RefreshListView
@@ -95,14 +122,13 @@ const styles = StyleSheet.create({
     listItem: {
         marginBottom: 1,
         padding: 12,
-        backgroundColor: '#fff',
     },
     title: {
-    	marginBottom: 5,
+        marginBottom: 5,
     },
     message: {
-    	padding: 12,
-    	alignItems: 'center',
+        padding: 12,
+        alignItems: 'center',
         justifyContent: 'center',
     },
 });

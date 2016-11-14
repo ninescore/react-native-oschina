@@ -1,5 +1,6 @@
-import React, {
-    Component,
+import {
+    React,
+    BaseComponent,
     PropTypes,
     StyleSheet,
     View,
@@ -7,8 +8,7 @@ import React, {
     Text,
     TextInput,
     TouchableOpacity,
-} from '../components/Libraries';
-import BaseComponent from '../core/BaseComponent';
+} from '../../core/Libraries';
 import CommentList from './CommentList';
 
 export default class UserDetail extends BaseComponent {
