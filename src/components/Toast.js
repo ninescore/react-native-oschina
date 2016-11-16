@@ -4,7 +4,7 @@ import {
     View,
     Animated,
 } from 'react-native';
-import Text from './Text';
+import { Text } from './Text';
 
 export default class Toast extends Component {
 

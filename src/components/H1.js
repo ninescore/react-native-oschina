@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import {
     StyleSheet,
 } from 'react-native';
-import Text from './Text';
+import { Text } from './Text';
 
-export default class H1 extends Component {
+export class H1 extends Component {
 
     render() {
         return (

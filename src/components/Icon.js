@@ -9,7 +9,7 @@ import Octicons from 'react-native-vector-icons/Octicons';
 import Zocial from 'react-native-vector-icons/Zocial';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 
-export default class Icon extends Component {
+export class Icon extends Component {
 
     static propTypes = {
         size: PropTypes.number,

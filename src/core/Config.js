@@ -31,4 +31,4 @@ window.isSupportStatusBarTransparency = true;
 
 window.appName = '开源中国';
 window.domain = 'https://www.oschina.net';
-window.accessToken = '9be34f00-5395-4e13-945d-18264159778d';
+window.accessToken = 'd86b6b0b-aa3f-4fa8-ab3f-820cd7d6f615';

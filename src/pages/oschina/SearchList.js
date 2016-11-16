@@ -9,8 +9,8 @@ import {
     TextInput,
     TouchableOpacity,
     ListView,
+    RefreshListView,
 } from '../../core/Libraries';
-import RefreshListView from '../../components/RefreshListView';
 import NewsDetail from './NewsDetail';
 import BlogDetail from './BlogDetail';
 

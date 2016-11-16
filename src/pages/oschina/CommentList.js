@@ -9,8 +9,8 @@ import {
     TextInput,
     TouchableOpacity,
     ListView,
+    RefreshListView,
 } from '../../core/Libraries';
-import RefreshListView from '../../components/RefreshListView';
 import UserDetail from './UserDetail';
 
 export default class CommentList extends BaseComponent {

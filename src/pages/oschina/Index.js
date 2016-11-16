@@ -9,12 +9,14 @@ import {
     TextInput,
     TouchableOpacity,
     Icon,
+    Button,
 } from '../../core/Libraries';
 import NewsList from './NewsList';
 import BlogList from './BlogList';
 import SearchList from './SearchList';
 import Base from '../../theme/Base';
 import Dark from '../../theme/Dark';
+import ButtonExample from '../example/ButtonExample';
 
 export default class Index extends BaseComponent {
 
@@ -27,14 +29,27 @@ export default class Index extends BaseComponent {
         return (
             <View style={styles.container}>
 
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    style={styles.item}
+                <Button
+                    title="按钮示例"
+                    style={styles.btn}
+                    justifyContent="flex-start"
+                    backgroundColor={window.theme.embellishmentColor}
                     onPress={() => {
-                        window.toast.show('提示信息测试');
-                    } }>
-                    <Text>Toast</Text>
-                </TouchableOpacity>
+                        this.props.navigator.push({
+                            component: ButtonExample,
+                        });
+                    }}
+                />
+
+                <Button
+                    title="Toast"
+                    style={styles.btn}
+                    justifyContent="flex-start"
+                    backgroundColor={window.theme.embellishmentColor}
+                    onPress={() => {
+                        window.toast.show('Toast测试');
+                    }}
+                />
 
                 <TouchableOpacity
                     style={styles.item}
@@ -53,32 +68,32 @@ export default class Index extends BaseComponent {
                     } }>
                     <Text>新闻</Text>
                 </TouchableOpacity>
-                
+
                 <TouchableOpacity
-	                style={styles.item}
-	                onPress={() => {
-	                    this.props.navigator.push({
-	                        component: BlogList,
-	                    });
-	                } }>
-	                <Text>博客</Text>
-	            </TouchableOpacity>
-	            
-	            <TouchableOpacity
-	                style={styles.item}
-	                onPress={() => {
-	                    this.props.navigator.push({
-	                        component: SearchList,
-	                    });
-	                } }>
-	                <Text>搜索</Text>
-	            </TouchableOpacity>
+                    style={styles.item}
+                    onPress={() => {
+                        this.props.navigator.push({
+                            component: BlogList,
+                        });
+                    } }>
+                    <Text>博客</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={styles.item}
+                    onPress={() => {
+                        this.props.navigator.push({
+                            component: SearchList,
+                        });
+                    } }>
+                    <Text>搜索</Text>
+                </TouchableOpacity>
 
                 <TouchableOpacity
                     style={styles.item}
                     onPress={() => {
                         let menu = {
-                        	name: '主题',
+                            name: '主题',
                             selectedId: 1,
                             children: [{
                                 id: 1,
@@ -110,11 +125,9 @@ export default class Index extends BaseComponent {
 
 const styles = StyleSheet.create({
     container: {
-        
+        padding: 12,
     },
-    item: {
-        margin: 10,
-        padding: 10,
-        backgroundColor: '#ccc',
+    btn: {
+        marginTop: 12,
     },
 });

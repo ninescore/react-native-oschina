@@ -1,17 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import {
     StyleSheet,
-    Text as RNText,
+    Text as Text0,
 } from 'react-native';
 
-export default class Text extends Component {
+export class Text extends Component {
 
     render() {
         return (
-            <RNText {...this.props}
+            <Text0 {...this.props}
                 style={[window.theme.text, this.props.style]}>
                 {this.props.children}
-            </RNText>
+            </Text0>
         );
     }
 

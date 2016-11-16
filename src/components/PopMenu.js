@@ -11,6 +11,7 @@ import {
     Animated,
     Modal,
     Icon,
+    Button,
 } from '../core/Libraries';
 
 export default class PopMenu extends Component {
@@ -26,13 +27,13 @@ export default class PopMenu extends Component {
         this.animatedStyle = null;
         window.popMenu = this;
     }
-    
+
     componentDidMount() {
-    	if (window.navigation) {
-    		window.navigation.navigationContext.addListener('willfocus', () => {
-    			this.hide();
-    		})
-    	}
+        if (window.navigation) {
+            window.navigation.navigationContext.addListener('willfocus', () => {
+                this.hide();
+            })
+        }
     }
 
     // popDirection (default: 'toDown')
@@ -99,29 +100,25 @@ export default class PopMenu extends Component {
     renderMenu() {
         let arr = [];
         arr.push(
-            <View key={-1}
-                style={[
-                    styles.btn,
-                    { backgroundColor: window.theme.primaryColor },
-                    styles.btnFirst
-                ]}>
+            <Button key={-1}
+                disabled={true}
+                style={[styles.btn, styles.btnFirst]}
+                justifyContent="space-between">
                 <Text style={window.theme.whiteText}>请选择{this.state.menu.name}：</Text>
-            </View>
+            </Button>
         );
         this.state.menu.children.map((m, i) => {
             arr.push(
-                <TouchableOpacity
+                <Button
                     key={i}
-                    style={[
-                        styles.btn,
-                        { backgroundColor: window.theme.primaryColor }
-                    ]}
+                    style={styles.btn}
+                    justifyContent="space-between"
                     onPress={this.onPressMenu.bind(this, m)}>
                     <Text style={window.theme.whiteText}>{m.name}</Text>
                     {
                         this.state.menu.selectedId != m.id ? null : <Icon name="ios-checkmark" />
                     }
-                </TouchableOpacity>
+                </Button>
             );
         });
         return arr;
@@ -143,12 +140,7 @@ const styles = StyleSheet.create({
         marginTop: 1,
     },
     btn: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
         width: window.width,
-        paddingHorizontal: 12,
-        height: 45,
-        alignItems: 'center',
         marginTop: 1,
     },
     btnFirst: {

@@ -10,7 +10,7 @@ import {
     TouchableOpacity,
 } from '../core/Libraries';
 
-export default class BaseComponent extends Component {
+export class BaseComponent extends Component {
 
     constructor(props, title) {
         super(props);

@@ -9,9 +9,9 @@ import {
     RefreshControl,
     Dimensions,
 } from 'react-native';
-import Text from './Text';
+import { Text } from './Text';
 
-export default class RefreshListView extends Component {
+export class RefreshListView extends Component {
 
     static propTypes = {
         dataSource: PropTypes.object.isRequired,
@@ -28,6 +28,7 @@ export default class RefreshListView extends Component {
             showBackTop: false,
         };
         this.listView = null;
+        this.loadingText = '正在加载中...';
         this.onRefresh = this.onRefresh.bind(this);
         this.onEndReached = this.onEndReached.bind(this);
         this.renderHeader = this.renderHeader.bind(this);
@@ -47,7 +48,7 @@ export default class RefreshListView extends Component {
             return null;
         return (
             <View style={styles.message}>
-                <Text>正在加载中...</Text>
+                <Text>{this.loadingText}</Text>
             </View>
         );
     }
@@ -57,7 +58,7 @@ export default class RefreshListView extends Component {
             return null;
         return (
             <View style={styles.message}>
-                <Text>正在加载中...</Text>
+                <Text>{this.loadingText}</Text>
             </View>
         );
     }

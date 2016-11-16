@@ -12,6 +12,7 @@ import {
     TextInput,
     TouchableOpacity,
     Icon,
+    Button,
 } from './Libraries';
 import * as Utils from './Utils';
 
@@ -66,11 +67,11 @@ export default class NavigationBar extends Component {
         return (
             <View style={[window.theme.navigationBarContainer, styles.container]}>
                 {this.renderLeft()}
-                <TouchableOpacity
-                    style={styles.btn}
-                    onPress={this.goHome.bind(this)}>
-                    <Text style={window.theme.whiteText}>{this.state.title}</Text>
-                </TouchableOpacity>
+                <Button
+                    title={this.state.title}
+                    disabled={this.state.title == '首页' ? true : false}
+                    onPress={this.goHome.bind(this)}
+                />
                 <View style={styles.right}>
                     {this.renderRight()}
                 </View>
@@ -82,12 +83,10 @@ export default class NavigationBar extends Component {
         if (!this.state.isShowLeftButton)
             return null;
         return (
-            <TouchableOpacity
-                key={1}
-                style={styles.btn}
+            <Button
                 onPress={this.goBack.bind(this)}>
                 <Icon name="ios-arrow-round-back" />
-            </TouchableOpacity>
+            </Button>
         );
     }
 
@@ -96,15 +95,11 @@ export default class NavigationBar extends Component {
             return null;
         return this.state.rightButton.map((m, i) => {
             return (
-                <TouchableOpacity
+                <Button
                     key={i}
-                    style={styles.btn}
+                    title={m.name}
                     onPress={this.onPressRightButton.bind(this, m)}
-                    >
-                    <Text style={window.theme.whiteText}>
-                        {m.name}
-                    </Text>
-                </TouchableOpacity>
+                />
             );
         });
     }
