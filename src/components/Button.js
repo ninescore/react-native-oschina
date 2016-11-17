@@ -5,28 +5,38 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 import { Text } from './Text';
+import Color from 'color';
 
 export class Button extends Component {
 
-    // justifyContent enum('flex-start', 'flex-end', 'center', 'space-between', 'space-around')
     static propTypes = {
         title: PropTypes.string,
-        backgroundColor: PropTypes.string,
-        style: PropTypes.object,
-        inStyle: PropTypes.object,
-        justifyContent: PropTypes.string,
-        onPress: PropTypes.function,
-    };
-
-    static defaultProps = {
-        justifyContent: 'center',
+        style: PropTypes.oneOfType([
+            React.PropTypes.number, React.PropTypes.object, React.PropTypes.array
+        ]),
+        onPress: PropTypes.func,
     };
 
     constructor(props) {
         super(props);
+        this.backgroundColor = this.getBackgroundColorFromStyle(this.props.style);
         this.state = {
-            bg: 'transparent',
+            backgroundColor: this.backgroundColor,
         }
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        this.backgroundColor = this.getBackgroundColorFromStyle(nextProps.style);
+        this.state.backgroundColor = this.backgroundColor;
+        let color = Color(this.backgroundColor);
+        this.darkenColor = color.darken(0.1).rgbString();
+    }
+
+    getBackgroundColorFromStyle(propsStyle) {
+        let style = StyleSheet.flatten(propsStyle);
+        if (!style || !style.backgroundColor)
+            return window.theme.primaryColor;
+        return style.backgroundColor;
     }
 
     onPress() {
@@ -34,31 +44,26 @@ export class Button extends Component {
     }
 
     onPressIn() {
+        if (!this.darkenColor) {
+            let color = Color(this.state.backgroundColor);
+            this.darkenColor = color.darken(0.1).rgbString();
+        }
         this.setState({
-            bg: 'rgba(50, 50, 50, 0.1)',
+            backgroundColor: this.darkenColor,
         });
     }
 
     onPressOut() {
         this.setState({
-            bg: 'transparent',
+            backgroundColor: this.backgroundColor,
         });
     }
 
     render() {
-        let outStyles = [
-            this.props.style,
-            { backgroundColor: this.props.backgroundColor || window.theme.primaryColor }
-        ];
-        let inStyles = [
-            styles.inStyle,
-            this.props.inStyle,
-            {
-                backgroundColor: this.state.bg,
-                justifyContent: this.props.justifyContent,
-            }
-        ];
-
+        let containerStyles = [styles.container, this.props.style];
+        if (this.state.backgroundColor) {
+            containerStyles.push({ backgroundColor: this.state.backgroundColor });
+        }
         return (
             <TouchableWithoutFeedback
                 {...this.props}
@@ -66,10 +71,8 @@ export class Button extends Component {
                 onPressIn={this.onPressIn.bind(this)}
                 onPressOut={this.onPressOut.bind(this)}
                 >
-                <View style={outStyles}>
-                    <View style={inStyles}>
-                        {this.renderContent()}
-                    </View>
+                <View style={containerStyles}>
+                    {this.renderContent()}
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -86,10 +89,11 @@ export class Button extends Component {
 }
 
 const styles = StyleSheet.create({
-    inStyle: {
+    container: {
         flexDirection: 'row',
         alignSelf: 'stretch',
         alignItems: 'center',
+        justifyContent: 'center',
         paddingHorizontal: 12,
         minHeight: 42,
     },

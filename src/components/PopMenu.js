@@ -38,6 +38,7 @@ export default class PopMenu extends Component {
 
     // popDirection (default: 'toDown')
     show(menu, popDirection, callback) {
+        this.popDirection = popDirection || 'toDown';
         this.callback = callback;
         this.toValue = window.theme.navigationBarHeight;
         this.animatedStyle = { top: this.state.fadeAnim };
@@ -98,12 +99,16 @@ export default class PopMenu extends Component {
     }
 
     renderMenu() {
+        let btnStyle = [styles.btn];
+        if (this.popDirection == 'toUp')
+            btnStyle.push({ marginBottom: 1 });
+        else
+            btnStyle.push({ marginTop: 1 });
         let arr = [];
         arr.push(
             <Button key={-1}
                 disabled={true}
-                style={[styles.btn, styles.btnFirst]}
-                justifyContent="space-between">
+                style={btnStyle}>
                 <Text style={window.theme.whiteText}>请选择{this.state.menu.name}：</Text>
             </Button>
         );
@@ -111,8 +116,7 @@ export default class PopMenu extends Component {
             arr.push(
                 <Button
                     key={i}
-                    style={styles.btn}
-                    justifyContent="space-between"
+                    style={btnStyle}
                     onPress={this.onPressMenu.bind(this, m)}>
                     <Text style={window.theme.whiteText}>{m.name}</Text>
                     {
@@ -133,17 +137,14 @@ const styles = StyleSheet.create({
         top: 0,
         width: window.width,
         height: window.height,
+        backgroundColor: 'rgba(0,0,0,0.6)',
     },
     main: {
         position: 'absolute',
         left: 0,
-        marginTop: 1,
     },
     btn: {
         width: window.width,
-        marginTop: 1,
-    },
-    btnFirst: {
-        marginTop: 0,
+        justifyContent: 'space-between',
     },
 });

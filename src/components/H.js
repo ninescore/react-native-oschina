@@ -9,7 +9,20 @@ export class H1 extends Component {
     render() {
         return (
             <Text {...this.props}
-                style={[this.props.style, styles.text]}>
+                style={[this.props.style, styles.h1]}>
+                {this.props.children}
+            </Text>
+        );
+    }
+
+}
+
+export class H2 extends Component {
+
+    render() {
+        return (
+            <Text {...this.props}
+                style={[this.props.style, styles.h2]}>
                 {this.props.children}
             </Text>
         );
@@ -18,7 +31,10 @@ export class H1 extends Component {
 }
 
 const styles = StyleSheet.create({
-    text: {
+    h1: {
         fontSize: 24,
+    },
+    h2: {
+        fontSize: 20,
     },
 });

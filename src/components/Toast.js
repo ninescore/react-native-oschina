@@ -24,7 +24,7 @@ export default class Toast extends Component {
             Animated.sequence([
                 Animated.timing(
                     this.state.fadeAnim,
-                    { toValue: window.theme.navigationBarHeight + 1, duration: 200 }
+                    { toValue: window.theme.navigationBarHeight, duration: 200 }
                 ),
                 Animated.delay(2000),
             ]).start(() => {
@@ -37,13 +37,19 @@ export default class Toast extends Component {
     }
 
     render() {
-        return !this.state.text ? null : (
+        if (!this.state.text)
+            return null;
+        let style = [
+            styles.container,
+            {
+                backgroundColor: window.theme.primaryColor,
+                borderTopColor: window.theme.whiteColor,
+                top: this.state.fadeAnim,
+            }
+        ];
+        return (
             <Animated.View
-                style={[
-                    styles.container,
-                    { backgroundColor: window.theme.primaryColor },
-                    { top: this.state.fadeAnim }
-                ]}>
+                style={style}>
                 <Text style={window.theme.whiteText}>{this.state.text}</Text>
             </Animated.View>
         );
@@ -59,5 +65,6 @@ const styles = StyleSheet.create({
         padding: 10,
         alignItems: 'center',
         justifyContent: 'center',
+        borderTopWidth: 1,
     },
 });

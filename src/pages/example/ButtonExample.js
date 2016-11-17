@@ -27,22 +27,18 @@ export default class ButtonExample extends BaseComponent {
 
                 <Button
                     title="左对齐按钮"
-                    style={styles.btn}
-                    justifyContent="flex-start"
+                    style={[styles.btn, {justifyContent: 'flex-start'}]}
                 />
                 
                 <Button
                     title="左对齐按钮"
-                    style={styles.btn}
-                    justifyContent="flex-start"
-                    backgroundColor={window.theme.embellishmentColor}
+                    style={[styles.btn, {justifyContent: 'flex-start', backgroundColor: window.theme.embellishmentColor}]}
                 />
 
                 <Button
                     style={styles.btn}
-                    justifyContent="space-between"
-                    backgroundColor={window.theme.embellishmentColor}
-                >
+                    style={[styles.btn, {justifyContent: 'space-between', backgroundColor: window.theme.embellishmentColor}]}
+                 >
                     <Text style={window.theme.whiteText}>图标按钮</Text>
                     <Icon name="ios-checkmark" />
                 </Button>
