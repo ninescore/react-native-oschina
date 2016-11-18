@@ -19,14 +19,16 @@ export default class Welcome extends Component {
     }
 
     onLayout(event) {
-    	if (window.height > event.nativeEvent.layout.height)
-    		window.isSupportStatusBarTransparency = false;
+        if (window.height > event.nativeEvent.layout.height)
+            window.isSupportStatusBarTransparency = false;
+        else
+            window.isSupportStatusBarTransparency = true;
     }
 
     render() {
         return (
             <View style={styles.container}
-            	onLayout={this.onLayout.bind(this)}>
+                onLayout={this.onLayout.bind(this)}>
                 <H1 style={window.theme.whiteText}>欢迎来到{window.appName}</H1>
                 <Text style={window.theme.whiteText}>By React Native</Text>
             </View>
