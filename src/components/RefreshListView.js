@@ -128,6 +128,8 @@ export class RefreshListView extends Component {
                         <RefreshControl
                             refreshing={this.state.refreshing}
                             onRefresh={this.onRefresh}
+                            colors={[window.theme.primaryColor]}
+                            tintColor={window.theme.primaryColor}
                             />
                     }
                     onContentSizeChange={this.onContentSizeChange.bind(this)}

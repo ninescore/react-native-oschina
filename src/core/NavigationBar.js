@@ -29,6 +29,10 @@ export default class NavigationBar extends Component {
         window.navigationBar = this;
     }
 
+    componentWillUnmount() {
+        window.navigationBar = null;
+    }
+
     goBack() {
         Utils.BackAndroidUtil.defaultBackFn();
     }
